@@ -12,3 +12,8 @@ German:
 ```bash
 python record.py "German"
 ```
+
+## Dependencies
+sounddevice  
+speech-recognition  
+wavio
