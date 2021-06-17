@@ -1,6 +1,7 @@
 import sounddevice as sd
 import speech_recognition as sr
 import wavio
+import sys
 
 # from io import BytesIO
 from os import path
@@ -68,22 +69,15 @@ def recognize_important(lang):
         return most_important(data, lang)
     elif lang == 'German':
         data = recognize_speech('temp.wav', 'de-DE')
+    else:
+        print(f'Invalid language {lang}')
+        return []
     return most_important(data, lang)
 
 
-# Tests
 if __name__  == '__main__':
-    import time
-    record_audio(60)
+    assert len(sys.argv) == 2
+    assert sys.argv[1] == 'English' or sys.argv[1] == 'German'
+    print(recognize_important(sys.argv[1]))
 
-    start = time.time()
-    #data = recognize_speech('temp.wav', 'en-US')
-    data = recognize_speech('temp.wav', 'de-DE')
-    end = time.time()
-    print('Time to recognize: ', end - start)
- 
-    #print(most_important(data, 'English'))
-    print(most_important(data, 'German'))
-    end2 = time.time()
-    print('Time to find most important: ', end2 - end)
 
