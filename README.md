@@ -11,6 +11,8 @@ python main.py "German" 10
 ```
 
 ## Dependencies
+nltk  
 sounddevice  
 speech-recognition  
 wavio
+wordfreq
