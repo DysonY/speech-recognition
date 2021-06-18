@@ -1,16 +1,13 @@
 # Speech Recognition
 
-When the program is run, it will record 60 seconds of audio.  
-Extracting the most important words will take an additional ~20 seconds.  
-
-English:
+Record 5 minutes of English:
 ```bash
-python record.py "English"
+python main.py "English" 5
 ```
 
-German:
+Record 10 minutes of German:
 ```bash
-python record.py "German"
+python main.py "German" 10
 ```
 
 ## Dependencies
