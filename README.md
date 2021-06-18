@@ -14,5 +14,5 @@ python main.py "German" 10
 nltk  
 sounddevice  
 speech-recognition  
-wavio
+wavio  
 wordfreq
