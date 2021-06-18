@@ -35,14 +35,14 @@ def recognize_speech(filename, lang):
 
 
 # Record for specified number of seconds
-def record_audio(duration):
+def record_audio(filename, duration):
     device = get_input_device()
     chans = device['max_input_channels']
     freq = device['default_samplerate']
 
     recording = sd.rec(int(duration*freq), samplerate=freq, channels=chans)
     sd.wait()
-    wavio.write('temp.wav', recording, freq, sampwidth=2)
+    wavio.write(filename, recording, freq, sampwidth=2)
 
     '''
     with sd.Stream(samplerate=44100, channels=chans, dtype='int16') as raw:
@@ -62,13 +62,11 @@ def record_audio(duration):
             ostream.close()
     '''
 
-def recognize_important(lang):
-    record_audio(60)
+def recognize_important(filename, lang):
     if lang == 'English':
-        data = recognize_speech('temp.wav', 'en-US')
-        return most_important(data, lang)
+        data = recognize_speech(filename, 'en-US')
     elif lang == 'German':
-        data = recognize_speech('temp.wav', 'de-DE')
+        data = recognize_speech(filename, 'de-DE')
     else:
         print(f'Invalid language {lang}')
         return []
@@ -78,6 +76,7 @@ def recognize_important(lang):
 if __name__  == '__main__':
     assert len(sys.argv) == 2
     assert sys.argv[1] == 'English' or sys.argv[1] == 'German'
-    print(recognize_important(sys.argv[1]))
+    record_audio(60)
+    print(recognize_important('_temp.wav', sys.argv[1]))
 
 
