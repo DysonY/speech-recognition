@@ -9,7 +9,7 @@ def lemmatize(lemmatizer, words):
     tags = ['A', 'R', 'N', 'V']
     lemmas = []
     for word, tag in pos_tag(words):
-        if len(word) > sys.maxsize or not word:
+        if len(word) > sys.maxsize:
             continue
         if tag[0] in tags:
             lemma = lemmatizer.lemmatize(word, tag[0].lower())
@@ -28,7 +28,7 @@ def code_of(language):
 
 # Return list of most important words
 def most_important(word_str, lang):
-    words = word_str.split(' ')
+    words = word_str.split() # split on all whitespace
     length = len(words)
     lemmatizer = WordNetLemmatizer()
     language = code_of(lang)
