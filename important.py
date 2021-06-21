@@ -1,5 +1,5 @@
 import sys
-from nltk import pos_tag
+from nltk import pos_tag, word_tokenize
 from nltk.stem import WordNetLemmatizer
 from wordfreq import word_frequency
 
@@ -28,7 +28,8 @@ def code_of(language):
 
 # Return list of most important words
 def most_important(word_str, lang):
-    words = word_str.split() # split on all whitespace
+    #words = word_str.split() 
+    words = nltk.word_tokenize(word_str)
     length = len(words)
     lemmatizer = WordNetLemmatizer()
     language = code_of(lang)
