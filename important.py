@@ -9,7 +9,7 @@ def lemmatize(lemmatizer, words):
     tags = ['A', 'R', 'N', 'V']
     lemmas = []
     for word, tag in pos_tag(words):
-        if len(word) > sys.maxsize:
+        if len(word) > sys.maxsize or not word:
             continue
         if tag[0] in tags:
             lemma = lemmatizer.lemmatize(word, tag[0].lower())
